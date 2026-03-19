@@ -1,10 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { ExternalLink, Github } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
+import GlassSurface from "@/components/GlassSurface"
 
 type ProjectCategory = "data-engineering" | "ml-engineering"
 
@@ -125,147 +124,135 @@ export function ProjectsSection() {
   const filteredProjects = projects.filter((project) => project.category === activeCategory)
 
   return (
-    <section className="py-32 px-6 relative">
-      <div className="max-w-7xl mx-auto">
+    <section id="proyectos" className="relative">
+      <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-6 text-balance">
+          <h2 className="text-5xl font-bold mb-6 text-balance text-white mix-blend-plus-lighter">
             <span className="text-primary">{t("projects.title")}</span> Projects
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12">{t("projects.subtitle")}</p>
+          <p className="text-xl text-white/70 max-w-2xl mx-auto mb-12 mix-blend-plus-lighter">{t("projects.subtitle")}</p>
 
           {/* Category Buttons */}
-          <div className="inline-flex items-center gap-4 p-2 rounded-lg bg-secondary/50 border border-primary/20">
-            <Button
-              variant={activeCategory === "data-engineering" ? "default" : "ghost"}
-              size="lg"
-              onClick={() => setActiveCategory("data-engineering")}
-              className={`font-mono transition-all ${
-                activeCategory === "data-engineering"
-                  ? "bg-primary text-primary-foreground glow-border"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t("projects.de")}
-            </Button>
-            <Button
-              variant={activeCategory === "ml-engineering" ? "default" : "ghost"}
-              size="lg"
-              onClick={() => setActiveCategory("ml-engineering")}
-              className={`font-mono transition-all ${
-                activeCategory === "ml-engineering"
-                  ? "bg-primary text-primary-foreground glow-border"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {t("projects.ml")}
-            </Button>
+          <div className="inline-flex items-center gap-4">
+            <button onClick={() => setActiveCategory("data-engineering")}>
+              <GlassSurface
+                width="auto" height="auto" borderRadius={16} borderWidth={0}
+                opacity={activeCategory === "data-engineering" ? 0.8 : 0.4}
+                brightness={activeCategory === "data-engineering" ? 70 : 40}
+                mixBlendMode="normal"
+              >
+                <div className={`px-6 py-3 font-mono transition-colors ${activeCategory === "data-engineering" ? "text-white" : "text-white/60 hover:text-white"}`}>
+                  {t("projects.de")}
+                </div>
+              </GlassSurface>
+            </button>
+            <button onClick={() => setActiveCategory("ml-engineering")}>
+              <GlassSurface
+                width="auto" height="auto" borderRadius={16} borderWidth={0}
+                opacity={activeCategory === "ml-engineering" ? 0.8 : 0.4}
+                brightness={activeCategory === "ml-engineering" ? 70 : 40}
+                mixBlendMode="normal"
+              >
+                <div className={`px-6 py-3 font-mono transition-colors ${activeCategory === "ml-engineering" ? "text-white" : "text-white/60 hover:text-white"}`}>
+                  {t("projects.ml")}
+                </div>
+              </GlassSurface>
+            </button>
           </div>
         </div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
-            <Card
-              key={project.id}
-              className="group relative overflow-hidden border-primary/20 bg-card/50 hover:border-primary/50 transition-all glow-border-subtle flex flex-col h-[680px]"
-            >
-              <div className="relative h-48 w-full overflow-hidden bg-secondary flex-shrink-0">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title[language]}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
-              </div>
+            <div key={project.id} className="group relative overflow-hidden flex flex-col h-[680px] rounded-2xl">
+              <GlassSurface width="100%" height="100%" borderRadius={16} blur={12} opacity={0.65} brightness={45} borderWidth={0} mixBlendMode="normal">
+                <div className="flex flex-col h-full w-full">
+                  <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
+                    <img
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title[language]}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  </div>
 
-              <div className="p-6 flex flex-col flex-grow">
-                {/* Project Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse mt-2" />
-                  <div className="flex gap-2">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        className="p-2 rounded-md hover:bg-primary/10 transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={t("projects.github")}
-                      >
-                        <Github className="h-4 w-4 text-muted-foreground hover:text-primary" />
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        className="p-2 rounded-md hover:bg-primary/10 transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={t("projects.demo")}
-                      >
-                        <ExternalLink className="h-4 w-4 text-muted-foreground hover:text-primary" />
-                      </a>
-                    )}
+                  <div className="p-6 flex flex-col flex-grow relative z-10 w-full text-white mix-blend-plus-lighter">
+                    {/* Project Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse mt-2" />
+                      <div className="flex gap-2">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            className="p-2 rounded-md hover:bg-white/10 transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={t("projects.github")}
+                          >
+                            <Github className="h-4 w-4 text-white/70 hover:text-white" />
+                          </a>
+                        )}
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            className="p-2 rounded-md hover:bg-white/10 transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={t("projects.demo")}
+                          >
+                            <ExternalLink className="h-4 w-4 text-white/70 hover:text-white" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Project Title */}
+                    <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">
+                      {project.title[language]}
+                    </h3>
+
+                    {/* Project Description */}
+                    <p className="text-sm text-white/80 mb-4 leading-relaxed">{project.description[language]}</p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6 min-h-[80px]">
+                      {project.tags.map((tag) => (
+                        <GlassSurface key={tag} width="auto" height="auto" borderRadius={8} blur={5} opacity={0.5} brightness={60} mixBlendMode="normal">
+                          <span className="px-3 py-1 block text-xs text-white font-mono h-fit">
+                            {tag}
+                          </span>
+                        </GlassSurface>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1 block">
+                          <GlassSurface width="100%" height="auto" borderRadius={12} blur={5} opacity={0.6} brightness={60} mixBlendMode="normal" className="hover:scale-105 transition-transform">
+                            <div className="flex items-center justify-center py-2 px-4 w-full h-full font-mono text-xs sm:text-sm text-white">
+                              <Github className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 flex-shrink-0" />
+                              <span className="truncate">{language === "es" ? "GitHub" : "GitHub Code"}</span>
+                            </div>
+                          </GlassSurface>
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex-1 block">
+                          <GlassSurface width="100%" height="auto" borderRadius={12} blur={5} opacity={0.6} brightness={60} mixBlendMode="normal" className="hover:scale-105 transition-transform">
+                            <div className="flex items-center justify-center py-2 px-4 w-full h-full font-mono text-xs sm:text-sm text-white">
+                              <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 flex-shrink-0" />
+                              <span className="truncate">{language === "es" ? "Demo" : "Demo"}</span>
+                            </div>
+                          </GlassSurface>
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
-
-                {/* Project Title */}
-                <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
-                  {project.title[language]}
-                </h3>
-
-                {/* Project Description */}
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{project.description[language]}</p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6 min-h-[80px]">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-xs rounded-md bg-secondary border border-primary/10 text-primary font-mono h-fit"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
-                  {project.github && (
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full bg-primary/10 border-primary hover:bg-primary hover:text-black transition-all glow-border-subtle font-mono text-xs sm:text-sm"
-                      >
-                        <Github className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 flex-shrink-0" />
-                        <span className="truncate">{language === "es" ? "GitHub" : "GitHub Code"}</span>
-                      </Button>
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex-1">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full bg-primary/10 border-primary hover:bg-primary hover:text-black transition-all glow-border-subtle font-mono text-xs sm:text-sm"
-                      >
-                        <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 flex-shrink-0" />
-                        <span className="truncate">{language === "es" ? "Demo" : "Demo"}</span>
-                      </Button>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </Card>
+              </GlassSurface>
+            </div>
           ))}
-        </div>
-
-        {/* Footer CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-muted-foreground mb-6 font-mono">{t("projects.cta")}</p>
-          <Button size="lg" className="glow-border font-mono">
-            {t("projects.viewAll")}
-          </Button>
         </div>
       </div>
     </section>

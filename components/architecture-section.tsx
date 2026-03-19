@@ -2,6 +2,7 @@
 
 import { Box, GitBranch, Shield, Zap } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
+import GlassSurface from "@/components/GlassSurface"
 
 const architecturesData = {
   es: [
@@ -214,56 +215,51 @@ export function ArchitectureSection() {
   const architectures = architecturesData[language]
 
   return (
-    <section id="arquitectura" className="py-20 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/50 to-background pointer-events-none" />
-
-      <div className="relative">
+    <section id="arquitectura" className="relative">
+      <div className="relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-heading text-4xl md:text-5xl mb-4 text-accent">{t("arch.title")}</h2>
-          <p className="text-muted-foreground font-mono text-sm max-w-2xl mx-auto mb-4">{t("arch.subtitle")}</p>
-          <div className="w-24 h-1 bg-accent mx-auto shadow-[0_0_20px_rgba(34,197,94,0.5)]" />
+          <h2 className="font-heading text-4xl md:text-5xl mb-4 text-accent mix-blend-plus-lighter">{t("arch.title")}</h2>
+          <p className="text-white/80 font-mono text-sm max-w-2xl mx-auto mb-4 mix-blend-plus-lighter">{t("arch.subtitle")}</p>
+          <div className="w-24 h-1 bg-accent mx-auto" />
         </div>
 
         <div className="space-y-12">
           {architectures.map((arch, index) => {
             const Icon = arch.icon
             return (
-              <div
-                key={index}
-                className="group relative bg-card/20 border border-accent/20 p-8 hover:border-accent/40 transition-all duration-500"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/5 to-accent/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                <div className="relative">
-                  {/* Header */}
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center border border-accent/30 group-hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-shadow">
-                      <Icon className="w-7 h-7 text-accent" />
-                    </div>
-                    <h3 className="font-heading text-2xl text-foreground">{arch.title}</h3>
-                  </div>
-
-                  {/* Content Grid */}
-                  <div className="grid md:grid-cols-3 gap-6">
-                    {arch.sections.map((section, sectionIndex) => (
-                      <div key={sectionIndex} className="space-y-4">
-                        <div className="flex items-center gap-2 mb-4">
-                          <Zap className="w-4 h-4 text-accent" />
-                          <h4 className="font-heading text-lg text-accent">{section.subtitle}</h4>
-                        </div>
-
-                        <div className="space-y-3">
-                          {section.points.map((point, pointIndex) => (
-                            <div key={pointIndex} className="flex items-start gap-3 group/item">
-                              <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shadow-[0_0_6px_rgba(34,197,94,0.6)] group-hover/item:shadow-[0_0_12px_rgba(34,197,94,0.8)] transition-shadow" />
-                              <p className="text-foreground/90 text-sm leading-relaxed flex-1">{point}</p>
-                            </div>
-                          ))}
-                        </div>
+              <div key={index} className="group relative w-full rounded-2xl overflow-hidden">
+                <GlassSurface width="100%" height="auto" borderRadius={24} blur={15} opacity={0.65} brightness={45} borderWidth={0} mixBlendMode="normal">
+                  <div className="relative p-8 w-full text-white mix-blend-plus-lighter">
+                    {/* Header */}
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-14 h-14 rounded-lg bg-accent/20 flex items-center justify-center border border-accent/40 shadow-inner">
+                        <Icon className="w-7 h-7 text-accent drop-shadow-md" />
                       </div>
-                    ))}
+                      <h3 className="font-heading text-2xl text-white font-bold">{arch.title}</h3>
+                    </div>
+
+                    {/* Content Grid */}
+                    <div className="grid md:grid-cols-3 gap-6">
+                      {arch.sections.map((section, sectionIndex) => (
+                        <div key={sectionIndex} className="space-y-4">
+                          <div className="flex items-center gap-2 mb-4">
+                            <Zap className="w-4 h-4 text-accent drop-shadow-md" />
+                            <h4 className="font-heading text-lg text-accent font-semibold">{section.subtitle}</h4>
+                          </div>
+
+                          <div className="space-y-3">
+                            {section.points.map((point, pointIndex) => (
+                              <div key={pointIndex} className="flex items-start gap-3 group/item">
+                                <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shadow-[0_0_6px_rgba(34,197,94,0.6)]" />
+                                <p className="text-white/90 text-sm leading-relaxed flex-1">{point}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </GlassSurface>
               </div>
             )
           })}

@@ -1,71 +1,82 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useMemo } from "react"
 import { useI18n } from "@/lib/i18n-context"
-import { LanguageSelector } from "./language-selector" // Reincorporado
-import PillNav from "./PillNav"
+import { LanguageSelector } from "./language-selector"
+import GlassSurface from "./GlassSurface"
 
-export function Navigation() {
-  const [activeSection, setActiveSection] = useState("inicio")
+interface NavigationProps {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+}
+
+export function Navigation({ activeTab, setActiveTab }: NavigationProps) {
   const { t } = useI18n()
 
-  const sections = useMemo(() => [
-    { id: "inicio", label: t("nav.home") },
-    { id: "proyectos", label: t("nav.projects") },
-    { id: "arquitectura", label: t("nav.architecture") },
-    { id: "tecnologias", label: t("nav.technologies") },
-    { id: "experiencia", label: t("nav.experience") },
-    { id: "formacion", label: t("nav.education") },
+  const tabs = useMemo(() => [
+    { id: "home", label: t("nav.home") || "Home" },
+    { id: "solutions", label: t("nav.projects") || "Solutions" }, // Assuming you will update localization or just hardcode mapping to "solutions" concepts
+    { id: "about", label: t("nav.experience") || "About" },
   ], [t])
-
-  const navItems = useMemo(() => sections.map(s => ({
-    label: s.label,
-    href: `#${s.id}`
-  })), [sections])
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" })
-    }
+  const handleTabClick = (href: string) => {
+    const id = href.replace('#', '');
+    setActiveTab(id);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top when changing tab
   }
-
-  useEffect(() => {
-    const handleScroll = () => {
-        if (window.scrollY < 100) { setActiveSection("inicio"); return; }
-        for (const section of sections) {
-            const element = document.getElementById(section.id);
-            if (element) {
-                const { offsetTop, offsetHeight } = element;
-                const scrollPos = window.scrollY + 120;
-                if (scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight) {
-                    setActiveSection(section.id);
-                    break;
-                }
-            }
-        }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections]);
 
   return (
     <>
-      {/* Contenedor del selector de idioma (Igual que antes) */}
+      {/* Selector de idioma */}
       <div className="fixed top-6 right-6 z-[120]">
-        <LanguageSelector />
+        <GlassSurface
+          width="auto"
+          height="auto"
+          borderRadius={24}
+          brightness={50}
+          opacity={0.8}
+          blur={10}
+          borderWidth={0}
+          mixBlendMode="normal"
+        >
+          <div className="p-1">
+            <LanguageSelector />
+          </div>
+        </GlassSurface>
       </div>
 
-      <PillNav 
-        items={navItems}
-        activeHref={`#${activeSection}`}
-        onItemClick={scrollToSection}
-        logo={<span className="font-bold text-white text-lg">JSR</span>}
-        baseColor="#000000" 
-        pillColor="#ffffff" 
-        pillTextColor="#000000"
-        hoveredPillTextColor="#ffffff"
-      />
+      {/* Barra de navegación central */}
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[120] w-[90%] md:w-auto max-w-lg">
+        <GlassSurface
+          width="100%"
+          height="auto"
+          borderRadius={32}
+          brightness={50}
+          opacity={0.8}
+          blur={12}
+          borderWidth={0}
+          mixBlendMode="normal"
+        >
+          <div className="flex items-center justify-between px-3 md:px-6 py-2 md:py-3 w-full gap-2 md:gap-6">
+            <span className="font-bold text-white text-lg px-2 hidden md:block">JSR</span>
+            <div className="flex items-center gap-1 md:gap-4 flex-1 justify-center">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabClick(`#${tab.id}`)}
+                  className={`
+                    px-3 py-2 md:px-5 md:py-2.5 rounded-2xl font-mono text-sm md:text-base font-medium transition-all duration-300
+                    ${activeTab === tab.id
+                      ? "text-white bg-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)] scale-105"
+                      : "text-white/60 hover:text-white hover:bg-white/5"}
+                  `}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </GlassSurface>
+      </div>
     </>
   )
 }

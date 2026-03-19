@@ -8,7 +8,7 @@ export function BottomBlur() {
         h-40
         z-40
         pointer-events-none
-        backdrop-blur-[6px]
+        backdrop-blur-[4px]
         mask-gradient
       "
     />

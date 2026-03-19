@@ -37,7 +37,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.experience": "Experiencia",
     "nav.education": "Formación",
     "nav.technologies": "Tecnologías",
-    "nav.projects": "Proyectos",
+    "nav.projects": "Soluciones",
     "nav.architecture": "Arquitectura",
 
     // Hero
@@ -58,7 +58,7 @@ const translations: Record<Language, Record<string, string>> = {
     "exp.linkedin.link": "LinkedIn",
 
     // Tech Stack
-    "tech.title": "Tech",
+    "tech.title": "Stack Tecnológico",
     "tech.subtitle": "Herramientas y tecnologías que domino para crear soluciones de datos y ML",
     "tech.cat.cloud": "Computación en Nube & DevOps",
     "tech.cat.version": "Control de Versiones & Contenedores",
@@ -103,6 +103,27 @@ const translations: Record<Language, Record<string, string>> = {
     "edu.linkedin.notice": "Para más detalles sobre mi formación y certificaciones, visita mi perfil de",
     "edu.linkedin.link": "LinkedIn",
 
+    // About preview
+    "about.badge": "Sobre mí",
+    "about.title": "Steban Ruiz Benavides",
+    "about.description":
+      "Ingeniero de Datos y ML con más de 3 años de experiencia diseñando pipelines de datos escalables y desplegando modelos de machine learning en producción. Apasionado por transformar datos complejos en soluciones de IA que generen valor real para las organizaciones.",
+    "about.stat1": "Años exp.",
+    "about.stat2": "Proyectos",
+    "about.stat3": "Datos proc.",
+
+    // Contact
+    "contact.title": "Hablemos",
+    "contact.subtitle": "stebanruiz.dev@gmail.com · Respondo en menos de 24h",
+    "contact.name": "Tu nombre",
+    "contact.email": "Tu email",
+    "contact.message": "¿En qué puedo ayudarte?",
+    "contact.send": "Enviar mensaje",
+    "contact.sending": "Enviando...",
+    "contact.success.title": "¡Mensaje enviado!",
+    "contact.success.message": "Gracias por escribirme. Te responderé pronto.",
+    "contact.success.again": "Enviar otro mensaje",
+
     // Footer
     "footer.description":
       "Data Engineer y ML Engineer especializado en transformar datos en soluciones escalables de inteligencia artificial.",
@@ -118,7 +139,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.experience": "Experience",
     "nav.education": "Education",
     "nav.technologies": "Technologies",
-    "nav.projects": "Projects",
+    "nav.projects": "Solutions",
     "nav.architecture": "Architecture",
 
     // Hero
@@ -139,7 +160,7 @@ const translations: Record<Language, Record<string, string>> = {
     "exp.linkedin.link": "LinkedIn profile",
 
     // Tech Stack
-    "tech.title": "Tech",
+    "tech.title": "Tech Stack",
     "tech.subtitle": "Tools and technologies I master to create data and ML solutions",
     "tech.cat.cloud": "Cloud Computing & DevOps",
     "tech.cat.version": "Version Control & Containerization",
@@ -183,6 +204,27 @@ const translations: Record<Language, Record<string, string>> = {
     "edu.title": "Education",
     "edu.linkedin.notice": "For more details about my education and certifications, visit my",
     "edu.linkedin.link": "LinkedIn profile",
+
+    // About preview
+    "about.badge": "About me",
+    "about.title": "Steban Ruiz Benavides",
+    "about.description":
+      "Data and ML Engineer with 3+ years of experience designing scalable data pipelines and deploying machine learning models in production. Passionate about transforming complex data into AI solutions that generate real value for organizations.",
+    "about.stat1": "Yrs exp.",
+    "about.stat2": "Projects",
+    "about.stat3": "Data proc.",
+
+    // Contact
+    "contact.title": "Let's Talk",
+    "contact.subtitle": "stebanruiz.dev@gmail.com · I reply within 24h",
+    "contact.name": "Your name",
+    "contact.email": "Your email",
+    "contact.message": "How can I help you?",
+    "contact.send": "Send message",
+    "contact.sending": "Sending...",
+    "contact.success.title": "Message sent!",
+    "contact.success.message": "Thanks for reaching out. I'll get back to you soon.",
+    "contact.success.again": "Send another message",
 
     // Footer
     "footer.description":
