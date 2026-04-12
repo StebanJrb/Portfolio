@@ -218,9 +218,9 @@ export function ArchitectureSection() {
     <section id="arquitectura" className="relative">
       <div className="relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-heading text-4xl md:text-5xl mb-4 text-accent mix-blend-plus-lighter">{t("arch.title")}</h2>
+          <h2 className="font-heading text-4xl md:text-5xl mb-4 text-emerald-400 mix-blend-plus-lighter">{t("arch.title")}</h2>
           <p className="text-white/80 font-mono text-sm max-w-2xl mx-auto mb-4 mix-blend-plus-lighter">{t("arch.subtitle")}</p>
-          <div className="w-24 h-1 bg-accent mx-auto" />
+          <div className="w-24 h-1 bg-emerald-400 mx-auto" />
         </div>
 
         <div className="space-y-12">
@@ -232,8 +232,8 @@ export function ArchitectureSection() {
                   <div className="relative p-8 w-full text-white mix-blend-plus-lighter">
                     {/* Header */}
                     <div className="flex items-center gap-4 mb-8">
-                      <div className="w-14 h-14 rounded-lg bg-accent/20 flex items-center justify-center border border-accent/40 shadow-inner">
-                        <Icon className="w-7 h-7 text-accent drop-shadow-md" />
+                      <div className="w-14 h-14 rounded-lg bg-emerald-400/20 flex items-center justify-center border border-emerald-400/40 shadow-inner">
+                        <Icon className="w-7 h-7 text-emerald-400 drop-shadow-md" />
                       </div>
                       <h3 className="font-heading text-2xl text-white font-bold">{arch.title}</h3>
                     </div>
@@ -243,14 +243,14 @@ export function ArchitectureSection() {
                       {arch.sections.map((section, sectionIndex) => (
                         <div key={sectionIndex} className="space-y-4">
                           <div className="flex items-center gap-2 mb-4">
-                            <Zap className="w-4 h-4 text-accent drop-shadow-md" />
-                            <h4 className="font-heading text-lg text-accent font-semibold">{section.subtitle}</h4>
+                            <Zap className="w-4 h-4 text-emerald-400 drop-shadow-md" />
+                            <h4 className="font-heading text-lg text-emerald-400 font-semibold">{section.subtitle}</h4>
                           </div>
 
                           <div className="space-y-3">
                             {section.points.map((point, pointIndex) => (
                               <div key={pointIndex} className="flex items-start gap-3 group/item">
-                                <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shadow-[0_0_6px_rgba(34,197,94,0.6)]" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shadow-[0_0_6px_rgba(34,197,94,0.6)]" />
                                 <p className="text-white/90 text-sm leading-relaxed flex-1">{point}</p>
                               </div>
                             ))}

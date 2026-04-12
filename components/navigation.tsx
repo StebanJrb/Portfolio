@@ -57,7 +57,7 @@ export function Navigation({ activeTab, setActiveTab }: NavigationProps) {
           mixBlendMode="normal"
         >
           <div className="flex items-center justify-between px-3 md:px-6 py-2 md:py-3 w-full gap-2 md:gap-6">
-            <span className="font-bold text-white text-lg px-2 hidden md:block">JSR</span>
+            <span className="font-bold text-white text-lg px-2 hidden md:block">SRB</span>
             <div className="flex items-center gap-1 md:gap-4 flex-1 justify-center">
               {tabs.map((tab) => (
                 <button

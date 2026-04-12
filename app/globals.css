@@ -195,3 +195,23 @@
 .animate-marquee-reverse {
   animation: marquee-reverse linear infinite;
 }
+
+/* Custom scrollbar — slim crimson accent, matches red LiquidChrome background */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180, 40, 40, 0.45) rgba(255, 255, 255, 0.04);
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 2px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(180, 40, 40, 0.45);
+  border-radius: 2px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(220, 50, 50, 0.70);
+}

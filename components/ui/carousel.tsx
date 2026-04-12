@@ -42,7 +42,10 @@ function useCarousel() {
   return context
 }
 
-function Carousel({
+const Carousel = React.forwardRef<
+  { api: CarouselApi | undefined },
+  React.ComponentProps<'div'> & CarouselProps
+>(function Carousel({
   orientation = 'horizontal',
   opts,
   setApi,
@@ -50,7 +53,7 @@ function Carousel({
   className,
   children,
   ...props
-}: React.ComponentProps<'div'> & CarouselProps) {
+}, ref) {
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
@@ -104,6 +107,10 @@ function Carousel({
     }
   }, [api, onSelect])
 
+  React.useImperativeHandle(ref, () => ({
+    api,
+  }), [api])
+
   return (
     <CarouselContext.Provider
       value={{
@@ -119,6 +126,7 @@ function Carousel({
       }}
     >
       <div
+        ref={carouselRef}
         onKeyDownCapture={handleKeyDown}
         className={cn('relative', className)}
         role="region"
@@ -130,7 +138,7 @@ function Carousel({
       </div>
     </CarouselContext.Provider>
   )
-}
+})
 
 function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
   const { carouselRef, orientation } = useCarousel()

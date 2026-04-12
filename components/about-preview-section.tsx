@@ -26,7 +26,7 @@ export function AboutPreviewSection() {
                 {/* Image — covers placeholder when it loads; hidden via onError when 404 */}
                 <img
                   src="/profile.jpg"
-                  alt="Steban Ruiz Benavides"
+                  alt="Profile photo"
                   className="absolute inset-0 w-full h-full rounded-full object-cover z-10"
                   onError={(e) => {
                     e.currentTarget.style.display = "none"
@@ -46,9 +46,6 @@ export function AboutPreviewSection() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-1">
               {t("about.title")}
             </h2>
-            <p className="text-base font-mono text-primary mb-6">
-              Data Engineer <span className="text-white/40">&</span> ML Engineer
-            </p>
 
             <p className="text-base md:text-lg text-white/70 leading-relaxed mb-8 max-w-2xl">
               {t("about.description")}
@@ -57,9 +54,8 @@ export function AboutPreviewSection() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 max-w-sm mx-auto md:mx-0">
               {[
-                { value: "3+", label: t("about.stat1") },
-                { value: "15+", label: t("about.stat2") },
-                { value: "TB+", label: t("about.stat3") },
+                { value: "1+", label: t("about.stat1") },
+                { value: "42+", label: t("about.stat2") },
               ].map((stat) => (
                 <div
                   key={stat.label}

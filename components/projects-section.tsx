@@ -22,97 +22,97 @@ const projects: Project[] = [
   {
     id: "de-1",
     title: {
-      es: "Pipeline de Datos en Tiempo Real",
-      en: "Real-Time Data Pipeline",
+      es: "Data Lake — Medallion Architecture",
+      en: "Data Lake — Medallion Architecture",
     },
     description: {
-      es: "Pipeline de procesamiento de datos en tiempo real usando Kafka, Spark Streaming y BigQuery. Procesa más de 1M de eventos por segundo.",
-      en: "Real-time data processing pipeline using Kafka, Spark Streaming and BigQuery. Processes more than 1M events per second.",
+      es: "Implementación de Data Lake con arquitectura Medallion (Bronze/Silver/Gold) sobre AWS y Snowflake para garantizar calidad, gobernanza y escalabilidad de los datos.",
+      en: "Data Lake implementation with Medallion Architecture (Bronze/Silver/Gold) on AWS and Snowflake, ensuring data quality, governance and scalability.",
     },
     category: "data-engineering",
-    tags: ["Kafka", "Spark", "BigQuery", "Python"],
-    image: "/real-time-data-pipeline-architecture.jpg",
-    github: "https://github.com/username/project",
+    tags: ["Data Lake", "Medallion", "Snowflake", "AWS"],
+    image: "/Medaillon.png",
+    github: "https://github.com/StebanJrb/Data-Lake-Medallion-Architecture-Bronze-Silver-Gold-",
     demo: "https://demo.example.com",
   },
   {
     id: "de-2",
     title: {
-      es: "Plataforma de Orquestación ETL",
-      en: "ETL Orchestration Platform",
+      es: "Change Data Capture (CDC) con Debezium & Kafka",
+      en: "Change Data Capture (CDC) with Debezium & Kafka",
     },
     description: {
-      es: "Plataforma de orquestación de ETL con Airflow, dbt y Snowflake. Automatiza el procesamiento de datos de múltiples fuentes.",
-      en: "ETL orchestration platform with Airflow, dbt and Snowflake. Automates data processing from multiple sources.",
+      es: "Arquitectura CDC que captura y replica cambios en tiempo real usando Debezium y Kafka, garantizando sincronización eficiente entre bases transaccionales y sistemas analíticos.",
+      en: "CDC architecture capturing and replicating changes in real time with Debezium and Kafka, ensuring efficient synchronization between transactional databases and analytics systems.",
     },
     category: "data-engineering",
-    tags: ["Airflow", "dbt", "Snowflake", "Docker"],
-    image: "/etl-workflow-orchestration-dashboard.jpg",
-    github: "https://github.com/username/project",
+    tags: ["Debezium", "Kafka", "CDC", "Data Streaming"],
+    image: "/Change Data.png",
+    github: "https://github.com/StebanJrb/Change-Data-Capture-CDC-with-Debezium-Kafka",
     demo: "https://demo.example.com",
   },
   {
     id: "de-3",
     title: {
-      es: "Arquitectura de Data Lake",
-      en: "Data Lake Architecture",
+      es: "Legacy Warehouse Migration a Modern Stack",
+      en: "Legacy Warehouse Migration to Modern Stack",
     },
     description: {
-      es: "Arquitectura de Data Lake en AWS con S3, Glue y Athena. Almacena y procesa petabytes de datos estructurados y no estructurados.",
-      en: "Data Lake architecture in AWS with S3, Glue and Athena. Stores and processes petabytes of structured and unstructured data.",
+      es: "Migración de un data warehouse legacy a un stack moderno con dbt, Snowflake y pipelines automatizados, mejorando rendimiento y gobernanza de los datos.",
+      en: "Migration of a legacy data warehouse to a modern stack with dbt, Snowflake and automated pipelines, improving performance and data governance.",
     },
     category: "data-engineering",
-    tags: ["AWS", "S3", "Glue", "Athena"],
-    image: "/aws-data-lake-cloud-architecture.jpg",
-    github: "https://github.com/username/project",
+    tags: ["dbt", "Snowflake", "Data Migration", "Modernization"],
+    image: "/Legacy Wharehouse.png",
+    github: "https://github.com/StebanJrb/Legacy-Warehouse-Migration-to-Modern-Stack-dbt-Snowflake-",
     demo: "https://demo.example.com",
   },
   {
     id: "ml-1",
     title: {
-      es: "Predicción de Abandono de Clientes",
-      en: "Customer Churn Prediction",
+      es: "MLOps Pipeline — CI/CD, Champion/Challenger & Drift Monitoring",
+      en: "MLOps Pipeline — CI/CD, Champion/Challenger & Drift Monitoring",
     },
     description: {
-      es: "Modelo de predicción de abandono de clientes usando XGBoost y MLflow. Alcanza 92% de precisión en producción.",
-      en: "Customer churn prediction model using XGBoost and MLflow. Achieves 92% accuracy in production.",
+      es: "Pipeline de MLOps con integración continua, evaluación Champion/Challenger y monitoreo de drift para modelos de producción.",
+      en: "MLOps pipeline with continuous integration, Champion/Challenger evaluation and drift monitoring for production models.",
     },
     category: "ml-engineering",
-    tags: ["XGBoost", "MLflow", "Python", "FastAPI"],
-    image: "/customer-churn-prediction-model-dashboard.jpg",
-    github: "https://github.com/username/project",
+    tags: ["MLOps", "CI/CD", "Drift Monitoring", "Champion/Challenger"],
+    image: "/MLOPs Pipeline.png",
+    github: "https://github.com/StebanJrb/MLOps-Pipeline-CI-CD-Champion-Challenger-Drift-Monitoring",
     demo: "https://demo.example.com",
   },
   {
     id: "ml-2",
     title: {
-      es: "Análisis de Sentimientos NLP",
-      en: "NLP Sentiment Analysis",
+      es: "Credit Scoring con Explainability & Fairness Analysis",
+      en: "Credit Scoring with Explainability (XAI) & Fairness Analysis",
     },
     description: {
-      es: "Sistema de análisis de sentimientos usando transformers y Hugging Face. Procesa millones de comentarios diariamente.",
-      en: "Sentiment analysis system using transformers and Hugging Face. Processes millions of comments daily.",
+      es: "Modelo de scoring crediticio con explicación y análisis de equidad, usando XAI para mejorar la transparencia y reducir sesgos.",
+      en: "Credit scoring model with explainability and fairness analysis, using XAI to improve transparency and reduce bias.",
     },
     category: "ml-engineering",
-    tags: ["Transformers", "Hugging Face", "PyTorch", "FastAPI"],
-    image: "/nlp-sentiment-analysis-neural-network.jpg",
-    github: "https://github.com/username/project",
+    tags: ["XAI", "Fairness", "Credit Scoring", "Python"],
+    image: "/Credit Score.png",
+    github: "https://github.com/StebanJrb/Credit-Scoring-with-Explainability-XAI-Fairness-Analysis",
     demo: "https://demo.example.com",
   },
   {
     id: "ml-3",
     title: {
-      es: "Pipeline de Visión Computacional",
-      en: "Computer Vision Pipeline",
+      es: "Búsqueda Semántica & RAG sobre Documentación Interna",
+      en: "Semantic Search & RAG System over Internal Documentation",
     },
     description: {
-      es: "Pipeline de visión computacional para detección de objetos usando YOLOv8 y TensorFlow en edge devices.",
-      en: "Computer vision pipeline for object detection using YOLOv8 and TensorFlow on edge devices.",
+      es: "Sistema de búsqueda semántica y RAG para documentación interna, combinando embeddings y recuperación de contexto en tiempo real.",
+      en: "Semantic search and RAG system for internal documentation, combining embeddings and real-time context retrieval.",
     },
     category: "ml-engineering",
-    tags: ["TensorFlow", "YOLO", "OpenCV", "Docker"],
-    image: "/computer-vision-object-detection.png",
-    github: "https://github.com/username/project",
+    tags: ["Semantic Search", "RAG", "Embeddings", "Knowledge Base"],
+    image: "/Semantic Search.png",
+    github: "https://github.com/StebanJrb/Semantic-Search-RAG-System-over-Internal-Documentation",
     demo: "https://demo.example.com",
   },
 ]
@@ -125,50 +125,50 @@ export function ProjectsSection() {
 
   return (
     <section id="proyectos" className="relative">
-      <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="mb-12 flex flex-col gap-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center">
           <h2 className="text-5xl font-bold mb-6 text-balance text-white mix-blend-plus-lighter">
-            <span className="text-primary">{t("projects.title")}</span> Projects
+            <span className="text-emerald-400">{t("projects.title")}</span> Projects
           </h2>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto mb-12 mix-blend-plus-lighter">{t("projects.subtitle")}</p>
-
-          {/* Category Buttons */}
-          <div className="inline-flex items-center gap-4">
-            <button onClick={() => setActiveCategory("data-engineering")}>
-              <GlassSurface
-                width="auto" height="auto" borderRadius={16} borderWidth={0}
-                opacity={activeCategory === "data-engineering" ? 0.8 : 0.4}
-                brightness={activeCategory === "data-engineering" ? 70 : 40}
-                mixBlendMode="normal"
-              >
-                <div className={`px-6 py-3 font-mono transition-colors ${activeCategory === "data-engineering" ? "text-white" : "text-white/60 hover:text-white"}`}>
-                  {t("projects.de")}
-                </div>
-              </GlassSurface>
-            </button>
-            <button onClick={() => setActiveCategory("ml-engineering")}>
-              <GlassSurface
-                width="auto" height="auto" borderRadius={16} borderWidth={0}
-                opacity={activeCategory === "ml-engineering" ? 0.8 : 0.4}
-                brightness={activeCategory === "ml-engineering" ? 70 : 40}
-                mixBlendMode="normal"
-              >
-                <div className={`px-6 py-3 font-mono transition-colors ${activeCategory === "ml-engineering" ? "text-white" : "text-white/60 hover:text-white"}`}>
-                  {t("projects.ml")}
-                </div>
-              </GlassSurface>
-            </button>
-          </div>
+          <p className="text-xl text-white/70 max-w-2xl mx-auto mb-6 mix-blend-plus-lighter">{t("projects.subtitle")}</p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Category Buttons */}
+        <div className="flex justify-center items-center gap-4">
+          <button onClick={() => setActiveCategory("data-engineering")}>
+            <GlassSurface
+              width="auto" height="auto" borderRadius={16} borderWidth={0}
+              opacity={activeCategory === "data-engineering" ? 0.8 : 0.4}
+              brightness={activeCategory === "data-engineering" ? 70 : 40}
+              mixBlendMode="normal"
+            >
+              <div className={`px-6 py-3 font-mono transition-colors ${activeCategory === "data-engineering" ? "text-white" : "text-white/60 hover:text-white"}`}>
+                {t("projects.de")}
+              </div>
+            </GlassSurface>
+          </button>
+          <button onClick={() => setActiveCategory("ml-engineering")}>
+            <GlassSurface
+              width="auto" height="auto" borderRadius={16} borderWidth={0}
+              opacity={activeCategory === "ml-engineering" ? 0.8 : 0.4}
+              brightness={activeCategory === "ml-engineering" ? 70 : 40}
+              mixBlendMode="normal"
+            >
+              <div className={`px-6 py-3 font-mono transition-colors ${activeCategory === "ml-engineering" ? "text-white" : "text-white/60 hover:text-white"}`}>
+                {t("projects.ml")}
+              </div>
+            </GlassSurface>
+          </button>
+        </div>
+
+        {/* Projects List */}
+        <div className="grid gap-8 lg:grid-cols-3 md:grid-cols-2">
           {filteredProjects.map((project) => (
-            <div key={project.id} className="group relative overflow-hidden flex flex-col h-[680px] rounded-2xl">
+            <div key={project.id} className="group relative overflow-hidden rounded-2xl">
               <GlassSurface width="100%" height="100%" borderRadius={16} blur={12} opacity={0.65} brightness={45} borderWidth={0} mixBlendMode="normal">
-                <div className="flex flex-col h-full w-full">
-                  <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
+                <div className="flex flex-col w-full">
+                  <div className="relative h-72 w-full overflow-hidden flex-shrink-0">
                     <img
                       src={project.image || "/placeholder.svg"}
                       alt={project.title[language]}
@@ -177,10 +177,9 @@ export function ProjectsSection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   </div>
 
-                  <div className="p-6 flex flex-col flex-grow relative z-10 w-full text-white mix-blend-plus-lighter">
-                    {/* Project Header */}
+                  <div className="p-6 flex flex-col relative z-10 w-full text-white mix-blend-plus-lighter">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse mt-2" />
+                      <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mt-2" />
                       <div className="flex gap-2">
                         {project.github && (
                           <a
@@ -207,16 +206,15 @@ export function ProjectsSection() {
                       </div>
                     </div>
 
-                    {/* Project Title */}
-                    <h3 className="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-emerald-400 transition-colors">
                       {project.title[language]}
                     </h3>
 
-                    {/* Project Description */}
-                    <p className="text-sm text-white/80 mb-4 leading-relaxed">{project.description[language]}</p>
+                    <p className="text-base text-white/80 mb-4 leading-relaxed max-w-4xl">
+                      {project.description[language]}
+                    </p>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-6 min-h-[80px]">
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag) => (
                         <GlassSurface key={tag} width="auto" height="auto" borderRadius={8} blur={5} opacity={0.5} brightness={60} mixBlendMode="normal">
                           <span className="px-3 py-1 block text-xs text-white font-mono h-fit">
@@ -226,12 +224,12 @@ export function ProjectsSection() {
                       ))}
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                    <div className="flex flex-col sm:flex-row gap-3">
                       {project.github && (
                         <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex-1 block">
                           <GlassSurface width="100%" height="auto" borderRadius={12} blur={5} opacity={0.6} brightness={60} mixBlendMode="normal" className="hover:scale-105 transition-transform">
-                            <div className="flex items-center justify-center py-2 px-4 w-full h-full font-mono text-xs sm:text-sm text-white">
-                              <Github className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 flex-shrink-0" />
+                            <div className="flex items-center justify-center py-3 px-4 w-full h-full font-mono text-sm text-white">
+                              <Github className="h-4 w-4 mr-2 flex-shrink-0" />
                               <span className="truncate">{language === "es" ? "GitHub" : "GitHub Code"}</span>
                             </div>
                           </GlassSurface>
@@ -240,8 +238,8 @@ export function ProjectsSection() {
                       {project.demo && (
                         <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex-1 block">
                           <GlassSurface width="100%" height="auto" borderRadius={12} blur={5} opacity={0.6} brightness={60} mixBlendMode="normal" className="hover:scale-105 transition-transform">
-                            <div className="flex items-center justify-center py-2 px-4 w-full h-full font-mono text-xs sm:text-sm text-white">
-                              <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 flex-shrink-0" />
+                            <div className="flex items-center justify-center py-3 px-4 w-full h-full font-mono text-sm text-white">
+                              <ExternalLink className="h-4 w-4 mr-2 flex-shrink-0" />
                               <span className="truncate">{language === "es" ? "Demo" : "Demo"}</span>
                             </div>
                           </GlassSurface>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, type FormEvent } from "react"
 import { Send, CheckCircle } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
 
@@ -15,18 +15,72 @@ export function ContactSection() {
   const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({})
+  const [generalError, setGeneralError] = useState("")
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const emailIsValid = (value: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+
+  const validateForm = () => {
+    const nextErrors: Partial<Record<keyof FormState, string>> = {}
+
+    if (!form.name.trim()) {
+      nextErrors.name = t("contact.error.name")
+    }
+
+    if (!form.email.trim()) {
+      nextErrors.email = t("contact.error.email")
+    } else if (!emailIsValid(form.email)) {
+      nextErrors.email = t("contact.error.invalidEmail")
+    }
+
+    if (!form.message.trim()) {
+      nextErrors.message = t("contact.error.message")
+    }
+
+    setErrors(nextErrors)
+    return Object.keys(nextErrors).length === 0
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setGeneralError("")
+
+    if (!validateForm()) {
+      return
+    }
+
     setLoading(true)
-    await new Promise<void>((r) => setTimeout(r, 1000))
-    setSubmitted(true)
-    setLoading(false)
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      })
+
+      const result = await response.json()
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "No se pudo enviar el mensaje")
+      }
+
+      setSubmitted(true)
+    } catch (error) {
+      setGeneralError(
+        t("contact.error.general") ||
+          "Hubo un problema al enviar el mensaje. Por favor intenta de nuevo más tarde."
+      )
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleReset = () => {
     setSubmitted(false)
     setForm({ name: "", email: "", message: "" })
+    setErrors({})
+    setGeneralError("")
   }
 
   const inputClass =
@@ -34,8 +88,13 @@ export function ContactSection() {
 
   const labelClass = "block text-xs font-mono text-white/50 mb-1.5 uppercase tracking-wider"
 
+  const isFormValid =
+    form.name.trim().length > 0 &&
+    form.message.trim().length > 0 &&
+    emailIsValid(form.email)
+
   return (
-    <section className="relative">
+    <section id="contact" className="relative">
       <div className="border border-white/15 bg-white/5 backdrop-blur-md rounded-3xl p-8 md:p-12 transition-all hover:border-white/25">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
@@ -65,6 +124,12 @@ export function ContactSection() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
+              {generalError ? (
+                <div className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200 mb-4">
+                  {generalError}
+                </div>
+              ) : null}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className={labelClass}>{t("contact.name")}</label>
@@ -72,10 +137,15 @@ export function ContactSection() {
                     type="text"
                     placeholder="Steban Ruiz"
                     value={form.name}
-                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                    required
+                    onChange={(e) => {
+                      setForm((f) => ({ ...f, name: e.target.value }))
+                      setErrors((prev) => ({ ...prev, name: undefined }))
+                    }}
                     className={inputClass}
                   />
+                  {errors.name ? (
+                    <p className="mt-2 text-xs text-red-300">{errors.name}</p>
+                  ) : null}
                 </div>
                 <div>
                   <label className={labelClass}>{t("contact.email")}</label>
@@ -83,10 +153,15 @@ export function ContactSection() {
                     type="email"
                     placeholder="tu@correo.com"
                     value={form.email}
-                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                    required
+                    onChange={(e) => {
+                      setForm((f) => ({ ...f, email: e.target.value }))
+                      setErrors((prev) => ({ ...prev, email: undefined }))
+                    }}
                     className={inputClass}
                   />
+                  {errors.email ? (
+                    <p className="mt-2 text-xs text-red-300">{errors.email}</p>
+                  ) : null}
                 </div>
               </div>
               <div>
@@ -94,16 +169,21 @@ export function ContactSection() {
                 <textarea
                   placeholder="Cuéntame sobre tu proyecto..."
                   value={form.message}
-                  onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
-                  required
+                  onChange={(e) => {
+                    setForm((f) => ({ ...f, message: e.target.value }))
+                    setErrors((prev) => ({ ...prev, message: undefined }))
+                  }}
                   rows={5}
                   className={`${inputClass} resize-none`}
                 />
+                {errors.message ? (
+                  <p className="mt-2 text-xs text-red-300">{errors.message}</p>
+                ) : null}
               </div>
               <div className="flex justify-center pt-1">
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || !isFormValid}
                   className="flex items-center gap-2 px-10 py-3.5 bg-primary hover:bg-primary/90 rounded-full text-white font-mono text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_24px_rgba(0,171,228,0.3)] hover:shadow-[0_0_32px_rgba(0,171,228,0.5)]"
                 >
                   {loading ? (

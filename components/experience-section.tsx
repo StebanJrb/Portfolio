@@ -4,80 +4,74 @@ import { Briefcase } from "lucide-react"
 import { useI18n } from "@/lib/i18n-context"
 import GlassSurface from "@/components/GlassSurface"
 
-const experiencesData = {
+interface Experience {
+  company: string
+  role: string
+  period: string
+  location: string
+  type: string
+  description: string
+  achievements: string[]
+}
+
+const experiencesData: { es: Experience[]; en: Experience[] } = {
   es: [
     {
-      company: "Tech Corp",
-      role: "Senior Data Engineer",
-      period: "2022 - Presente",
+      company: "BBVA Colombia",
+      role: "Data Engineer Intern",
+      period: "Mar 2025 – Sep 2025 · 7 meses",
+      location: "Bogotá, Colombia · Híbrido",
+      type: "Práctica",
       description:
-        "Diseño y desarrollo de pipelines de datos a escala procesando +10TB diarios. Implementación de arquitecturas en AWS usando Spark, Airflow y Redshift.",
+        "Participé en la gestión operativa del portafolio de proyectos de datos de BBVA Holding, logrando una mejora del 30% en la trazabilidad y consistencia de la información. Apoyé los procesos de ingesta y validación de tablas de múltiples fuentes, soportando la integración de datos con un 80% de precisión en los flujos analíticos del banco. Además, gestioné licencias y el uso interno de herramientas de inteligencia artificial como ChatGPT y Gemini, optimizando el tiempo de procesamiento y lectura de datos relacionados con su uso en un 70% mediante la creación de reportes automatizados, fortaleciendo el control interno y la toma de decisiones basada en datos.",
       achievements: [
-        "Reducción del 60% en costos de infraestructura",
-        "Optimización de queries críticos mejorando performance 5x",
-        "Migración exitosa de data lake on-premise a cloud",
+        "30% de mejora en trazabilidad y consistencia de información",
+        "80% de precisión en integración de datos en flujos analíticos",
+        "70% de optimización en tiempo de procesamiento mediante reportes automatizados",
       ],
     },
     {
-      company: "DataFlow Solutions",
-      role: "ML Engineer",
-      period: "2020 - 2022",
+      company: "Cisco",
+      role: "Business Analyst Intern",
+      period: "Jun 2024 – Ene 2025 · 8 meses",
+      location: "Bogotá, Colombia · Híbrido",
+      type: "Práctica",
       description:
-        "Desarrollo de modelos de machine learning para predicción y clasificación. Deployment de modelos en producción con MLOps.",
+        "Apoyé la identificación de oportunidades de mejora y la optimización de procesos de negocio mediante análisis de datos e indicadores clave de rendimiento, logrando una reducción del 20% en los tiempos de generación de reportes. Diseñé dashboards e informes analíticos para equipos internos, garantizando una precisión superior al 95% en indicadores de negocio críticos. Colaboré con áreas técnicas de Cloud e IA para alinear requerimientos tecnológicos con objetivos estratégicos, lo que derivó en una mejora de eficiencia operativa superior al 15%. Me encargué de comunicar hallazgos y recomendaciones a líderes regionales, contribuyendo a decisiones más informadas alineadas con la estrategia global.",
       achievements: [
-        "Implementación de sistema de recomendaciones con 85% accuracy",
-        "Pipeline automatizado de reentrenamiento de modelos",
-        "Reducción de 40% en tiempo de inferencia",
-      ],
-    },
-    {
-      company: "StartupAI",
-      role: "Data Analyst",
-      period: "2018 - 2020",
-      description:
-        "Análisis de datos y creación de dashboards para toma de decisiones. Desarrollo de ETL pipelines y automatización de reportes.",
-      achievements: [
-        "Automatización de 15+ reportes mensuales",
-        "Implementación de data warehouse con dbt",
-        "Creación de dashboards interactivos en Tableau",
+        "20% de reducción en tiempos de generación de reportes",
+        "Precisión mayor al 95% en indicadores de negocio críticos",
+        "Mejora de eficiencia operativa superior al 15%",
       ],
     },
   ],
   en: [
     {
-      company: "Tech Corp",
-      role: "Senior Data Engineer",
-      period: "2022 - Present",
+      company: "BBVA Colombia",
+      role: "Data Engineer Intern",
+      period: "Mar 2025 – Sep 2025 · 7 mos",
+      location: "Bogotá, Colombia · Hybrid",
+      type: "Internship",
       description:
-        "Design and development of data pipelines at scale processing +10TB daily. Implementation of AWS architectures using Spark, Airflow and Redshift.",
+        "I participated in the operational management of BBVA Holding's data project portfolio, achieving a 30% improvement in information traceability and consistency. I supported the ingestion and validation processes of tables from multiple sources, supporting data integration with 80% accuracy in the bank's analytical workflows. Additionally, I managed licenses and internal use of artificial intelligence tools such as ChatGPT and Gemini, optimizing the processing and reading time of data related to their use by 70% through the creation of automated reports, strengthening internal control and data-driven decision-making.",
       achievements: [
-        "60% reduction in infrastructure costs",
-        "Critical query optimization improving performance 5x",
-        "Successful migration of on-premise data lake to cloud",
+        "30% improvement in information traceability and consistency",
+        "80% accuracy in data integration within analytical workflows",
+        "70% optimization in processing time through automated reports",
       ],
     },
     {
-      company: "DataFlow Solutions",
-      role: "ML Engineer",
-      period: "2020 - 2022",
+      company: "Cisco",
+      role: "Business Analyst Intern",
+      period: "Jun 2024 – Jan 2025 · 8 mos",
+      location: "Bogotá, Colombia · Hybrid",
+      type: "Internship",
       description:
-        "Development of machine learning models for prediction and classification. Deployment of models in production with MLOps.",
+        "I supported the identification of improvement opportunities and the optimization of business processes through data analysis and key performance indicators, achieving a 20% reduction in report generation times. I designed dashboards and analytical reports for internal teams, ensuring greater than 95% accuracy on critical business indicators. I collaborated with technical areas of Cloud and AI to align technological requirements with strategic objectives, which led to an improvement in operational efficiency of more than 15%. I was responsible for communicating findings and recommendations to regional leaders, contributing to more informed decisions aligned with the global strategy.",
       achievements: [
-        "Implementation of recommendation system with 85% accuracy",
-        "Automated model retraining pipeline",
-        "40% reduction in inference time",
-      ],
-    },
-    {
-      company: "StartupAI",
-      role: "Data Analyst",
-      period: "2018 - 2020",
-      description:
-        "Data analysis and dashboard creation for decision making. Development of ETL pipelines and report automation.",
-      achievements: [
-        "Automation of 15+ monthly reports",
-        "Data warehouse implementation with dbt",
-        "Creation of interactive dashboards in Tableau",
+        "20% reduction in report generation times",
+        "Greater than 95% accuracy on critical business indicators",
+        "More than 15% improvement in operational efficiency",
       ],
     },
   ],
@@ -92,24 +86,36 @@ export function ExperienceSection() {
     <section id="experiencia" className="relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="font-heading text-4xl md:text-5xl mb-4 text-accent mix-blend-plus-lighter">{t("exp.title")}</h2>
-          <div className="w-24 h-1 bg-accent mx-auto" />
+          <h2 className="font-heading text-4xl md:text-5xl mb-4 text-red-400 mix-blend-plus-lighter">{t("exp.title")}</h2>
+          <div className="w-24 h-1 bg-red-400 mx-auto" />
         </div>
 
-        {/* Experiencia laboral - 100% width with custom scroll */}
-        <div className="h-[600px] overflow-y-auto pr-4 custom-scrollbar space-y-6">
+        <div className="space-y-6">
           {experiences.map((exp, index) => (
             <div key={index} className="group relative w-full rounded-2xl overflow-hidden">
               <GlassSurface width="100%" height="auto" borderRadius={24} blur={15} opacity={0.65} brightness={45} borderWidth={0} mixBlendMode="normal">
                 <div className="relative p-8 w-full text-white mix-blend-plus-lighter">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-accent/20 flex items-center justify-center border border-accent/40 shadow-inner">
-                        <Briefcase className="w-6 h-6 text-accent drop-shadow-md" />
+                      <div className="w-12 h-12 rounded-lg bg-red-400/20 flex items-center justify-center border border-red-400/40 shadow-inner">
+                        <Briefcase className="w-6 h-6 text-red-400 drop-shadow-md" />
                       </div>
                       <div>
                         <h3 className="font-heading text-2xl text-white font-bold">{exp.role}</h3>
-                        <p className="text-accent font-mono text-base font-medium">{exp.company}</p>
+                        <p className="text-red-400 font-mono text-base font-medium">{exp.company}</p>
+                        <div className="flex items-center gap-3 mt-2 flex-wrap">
+                          {exp.location && (
+                            <span className="text-white/50 text-xs font-mono flex items-center gap-1.5">
+                              <span className="w-1 h-1 rounded-full bg-white/30 inline-block" />
+                              {exp.location}
+                            </span>
+                          )}
+                          {exp.type && (
+                            <span className="text-xs font-mono px-2 py-0.5 rounded-md border border-white/15 bg-white/5 text-white/60">
+                              {exp.type}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
 
@@ -125,7 +131,7 @@ export function ExperienceSection() {
                   <div className="space-y-3">
                     {exp.achievements.map((achievement, i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-accent mt-1.5 shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
+                        <div className="w-2 h-2 rounded-full bg-red-400 mt-1.5 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />
                         <span className="text-white/90 text-sm">{achievement}</span>
                       </div>
                     ))}

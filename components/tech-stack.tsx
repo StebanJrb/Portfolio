@@ -12,14 +12,12 @@ interface TechItem {
 const rowOne: TechItem[] = [
   { name: "AWS",            icon: "https://skillicons.dev/icons?i=aws",                     cat: "tech.cat.cloud" },
   { name: "GCP",            icon: "https://skillicons.dev/icons?i=gcp",                     cat: "tech.cat.cloud" },
-  { name: "Azure",          icon: "https://skillicons.dev/icons?i=azure",                   cat: "tech.cat.cloud" },
   { name: "Docker",         icon: "https://skillicons.dev/icons?i=docker",                  cat: "tech.cat.cloud" },
   { name: "Kubernetes",     icon: "https://skillicons.dev/icons?i=kubernetes",              cat: "tech.cat.cloud" },
   { name: "Python",         icon: "https://skillicons.dev/icons?i=python",                  cat: "tech.cat.deml" },
   { name: "PyTorch",        icon: "https://skillicons.dev/icons?i=pytorch",                 cat: "tech.cat.deml" },
   { name: "TensorFlow",     icon: "https://skillicons.dev/icons?i=tensorflow",              cat: "tech.cat.deml" },
-  { name: "Scikit-learn",   icon: "https://skillicons.dev/icons?i=sklearn",                 cat: "tech.cat.deml" },
-  { name: "Apache Spark",   icon: "https://cdn.simpleicons.org/apachespark/E25A1C",         cat: "tech.cat.streaming" },
+  { name: "PySpark",        icon: "https://cdn.simpleicons.org/apachespark/E25A1C",         cat: "tech.cat.streaming" },
   { name: "Apache Kafka",   icon: "https://cdn.simpleicons.org/apachekafka/ffffff",         cat: "tech.cat.streaming" },
   { name: "Apache Airflow", icon: "https://cdn.simpleicons.org/apacheairflow/017CEE",       cat: "tech.cat.streaming" },
   { name: "MLflow",         icon: "https://cdn.simpleicons.org/mlflow/0194E2",              cat: "tech.cat.mlops" },
@@ -29,7 +27,7 @@ const rowOne: TechItem[] = [
   { name: "MongoDB",        icon: "https://skillicons.dev/icons?i=mongodb",                 cat: "tech.cat.databases" },
 ]
 
-// Row 2: OS/Shell → Backend → Data libs → Version Control → IDEs → Design
+// Row 2: OS/Shell → Backend → Data libs → Version Control → IDEs → Design → AI Development
 const rowTwo: TechItem[] = [
   { name: "Linux",          icon: "https://skillicons.dev/icons?i=linux",                   cat: "tech.cat.os" },
   { name: "Debian",         icon: "https://skillicons.dev/icons?i=debian",                  cat: "tech.cat.os" },
@@ -39,15 +37,12 @@ const rowTwo: TechItem[] = [
   { name: "Java",           icon: "https://skillicons.dev/icons?i=java",                    cat: "tech.cat.backend" },
   { name: "Spring",         icon: "https://skillicons.dev/icons?i=spring",                  cat: "tech.cat.backend" },
   { name: "Node.js",        icon: "https://skillicons.dev/icons?i=nodejs",                  cat: "tech.cat.backend" },
-  { name: "JavaScript",     icon: "https://skillicons.dev/icons?i=javascript",              cat: "tech.cat.backend" },
   { name: "NumPy",          icon: "https://cdn.simpleicons.org/numpy/013243",               cat: "tech.cat.deml" },
   { name: "Pandas",         icon: "https://cdn.simpleicons.org/pandas/150458",              cat: "tech.cat.deml" },
   { name: "Git",            icon: "https://skillicons.dev/icons?i=git",                     cat: "tech.cat.version" },
   { name: "GitHub",         icon: "https://skillicons.dev/icons?i=github",                  cat: "tech.cat.version" },
-  { name: "VS Code",        icon: "https://skillicons.dev/icons?i=vscode",                  cat: "tech.cat.ides" },
-  { name: "IntelliJ IDEA",  icon: "https://skillicons.dev/icons?i=idea",                    cat: "tech.cat.ides" },
-  { name: "Blender",        icon: "https://skillicons.dev/icons?i=blender",                 cat: "tech.cat.design" },
-  { name: "Unreal Engine",  icon: "https://skillicons.dev/icons?i=unrealengine",            cat: "tech.cat.design" },
+  { name: "Claude Code",    icon: "/Claude.png",            cat: "tech.cat.ai" },
+  { name: "Antigravity",    icon: "/Antigravity.png",        cat: "tech.cat.ai" },
 ]
 
 function MarqueeRow({
@@ -62,6 +57,8 @@ function MarqueeRow({
   const { t } = useI18n()
   const doubled = [...items, ...items]
 
+  const animClass = direction === "left" ? "animate-marquee" : "animate-marquee-reverse"
+
   return (
     <div className="overflow-hidden w-full relative">
       {/* Edge fade masks */}
@@ -69,7 +66,7 @@ function MarqueeRow({
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black/80 to-transparent z-10 pointer-events-none" />
 
       <div
-        className={`flex items-center ${direction === "left" ? "animate-marquee" : "animate-marquee-reverse"}`}
+        className={`flex w-max ${animClass}`}
         style={{ animationDuration: `${duration}s` }}
       >
         {doubled.map((tech, i) => {

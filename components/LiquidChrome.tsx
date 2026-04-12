@@ -26,10 +26,8 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
     useEffect(() => {
         if (!containerRef.current) return;
 
-        console.log('LiquidChrome useEffect triggered with props:', { baseColor, speed, amplitude, frequencyX, frequencyY, interactive });
-
         const container = containerRef.current;
-        const renderer = new Renderer({ antialias: true });
+        const renderer = new Renderer({ antialias: false });
         const gl = renderer.gl;
         gl.clearColor(1, 1, 1, 1);
 
@@ -128,9 +126,14 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
             container.addEventListener('touchmove', handleTouchMove);
         }
 
+        const TARGET_FPS = 30;
+        const FRAME_INTERVAL = 1000 / TARGET_FPS;
+        let lastTime = 0;
         let animationId: number;
         function update(t: number) {
             animationId = requestAnimationFrame(update);
+            if (t - lastTime < FRAME_INTERVAL) return;
+            lastTime = t;
             program.uniforms.uTime.value = t * 0.001 * speed;
             renderer.render({ scene: mesh });
         }
